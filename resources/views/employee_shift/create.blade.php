@@ -17,14 +17,15 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.employee_shift.store') }}" method="POST">
+                <form action="{{ route('admin.employee_shift.store') }}" method="POST" onsubmit="return validateForm()">
                     @csrf
                     @method('POST')
                     <div class="container-fluid px-4">
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="col-form-label form-label">Shift Daily</label>
-                                <select name="shift_daily_id" class="form-control">
+                                <select name="shift_daily_id" class="form-control" required>
+                                    <option value="">-- Select Shift --</option>
                                     @foreach ($shift_daily as $shift_daily)
                                         <option value="{{ $shift_daily->id }}">
                                             {{ $shift_daily->shift_daily_code }}
@@ -36,20 +37,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="col-form-label form-label">Start Shift Date</label>
-                                <input name="date" type="date" class="form-control">
+                                <input name="date" type="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="col-form-label form-label">End Shift Date</label>
-                                <input name="end_date" type="date" class="form-control">
+                                <input name="end_date" type="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="col-form-label form-label">Employee</label>
                                 <div class="d-flex align-items-center">
-                                    <select name="employee_id" id="employee" class="form-control">
+                                    <select name="employee_id" id="employee" class="form-control" required>
                                         <option value="">-- Select Employee --</option>
                                         @foreach ($employees as $employee)
                                             <option value="{{ $employee->id }}" data-groups="{{ $employee->group_id }}">
@@ -117,6 +118,20 @@
                 employee.style.display = 'none';
             }
         });
+    }
+
+    function validateForm() {
+        const shiftDailyId = document.querySelector('select[name="shift_daily_id"]').value;
+        const date = document.querySelector('input[name="date"]').value;
+        const endDate = document.querySelector('input[name="end_date"]').value;
+        const employeeId = document.querySelector('select[name="employee_id"]').value;
+
+        if (!shiftDailyId || !date || !endDate || !employeeId) {
+            alert('Please fill out all required fields.');
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
     }
 </script>
 

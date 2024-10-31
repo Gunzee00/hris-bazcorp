@@ -148,6 +148,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::put('/employee/{id}/update', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('/employee/{id}/delete', [EmployeeController::class, 'destroy'])->name('employee.destroy');
     Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+    Route::get('/employee/export', [EmployeeController::class, 'exportEmployees'])->name('employee.export');
     Route::get('/employee/change-list', [EmployeeController::class, 'changeList'])->name('employee.change_list');
     Route::get('/employee/change/{id}', [EmployeeController::class, 'change'])->name('employee.change');
     Route::post('/employee/change/{id}/approval', [EmployeeController::class, 'changeApproval'])->name('employee.change_approval');

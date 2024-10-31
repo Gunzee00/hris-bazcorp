@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="col-form-label form-label">End Shift Date</label>
-                                    <input name="end_date" type="date" class="form-control">
+                                    <input name="end_date" type="date" class="form-control" >
                                 </div>
                             </div>
                             <div class="row">

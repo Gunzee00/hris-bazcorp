@@ -92,6 +92,9 @@ class EmployeeShiftController extends Controller
         return view('employee_shift.edit', ['employee_shift' => $employee_shift, 'shift_daily' => $shift_daily]);
     }
 
+
+     
+
     public function show($id)
     {
         $employee_shift = $this->employee_shift_repository->show($id);

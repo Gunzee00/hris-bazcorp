@@ -42,26 +42,30 @@ class ShiftGroupController extends Controller
             'total_days',
             'start_date',
         ]);
-        $shiftGroup = $this->shiftGroupRepository->create($data);
-        $this->log_repository->logActivity('Created shift group', $request->ip());
-        $shift_data = $request->input('shift_data');
-        if (is_string($shift_data)) {
-            $shift_data = json_decode($shift_data, true);
-        }
-        $shiftGroupDetails = [];
-        foreach ($shift_data as $shift) {
-            array_push(
-                $shiftGroupDetails,
-                [
-                    'shift_daily_id' => $shift['shift_daily_id'],
-                    'shift_group_id' => $shiftGroup->id,
-                    'day_order' => $shift['day_order']
-                ]
-            );
-        }
-        $this->shiftGroupDetailRepository->create($shiftGroupDetails);
-        return redirect()->route('admin.shift_group')->with('success', 'Data inserted successfully!');
-    }
+       
+       $shiftGroup = $this->shiftGroupRepository->create($data);
+       $this->log_repository->logActivity('Created shift group', $request->ip());
+       $shift_data = $request->input('shift_data');
+       if (is_string($shift_data)) {
+           $shift_data = json_decode($shift_data, true);
+       }
+       $shiftGroupDetails = [];
+       foreach ($shift_data as $shift) {
+           array_push(
+               $shiftGroupDetails,
+               [
+                   'shift_daily_id' => $shift['shift_daily_id'],
+                   'shift_group_id' => $shiftGroup->id,
+                   'day_order' => $shift['day_order']
+                
+               ]
+           );
+       }
+       
+       $this->shiftGroupDetailRepository->create($shiftGroupDetails);
+       return redirect()->route('admin.shift_group')->with('success', 'Data berhasil ditambahkan!');
+   }
+
 
     public function create()
     {
@@ -93,6 +97,7 @@ class ShiftGroupController extends Controller
             'total_days',
             'start_date',
         ]);
+        
         $shiftGroup = $this->shiftGroupRepository->update($id, $data);
         $this->log_repository->logActivity('Updated shift group with id: ' . $id, '', $request->ip());
         $this->shiftGroupDetailRepository->batchDelete($id);
@@ -113,6 +118,8 @@ class ShiftGroupController extends Controller
         $this->shiftGroupDetailRepository->create($shiftGroupDetails);
         return redirect()->route('admin.shift_group')->with('success', 'Data updated successfully!');
     }
+
+    
 
     public function destroy(Request $request, $id)
     {

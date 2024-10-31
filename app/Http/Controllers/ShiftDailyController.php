@@ -37,6 +37,8 @@ class ShiftDailyController extends Controller
             'end_time',
             'grace_for_late',
             'productive_work_time',
+            'break_start', 
+            'break_end', 
             'break_time',
             'remark',
         ]);

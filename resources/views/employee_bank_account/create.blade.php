@@ -26,33 +26,31 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <label class="col-form-label form-label">Employee</label>
-                                    <select id="employee_id" name="employee_id" class="form-control">
+                                    <select id="employee_id" name="employee_id" class="form-control" required>
                                         @foreach ($employee as $emp)
-                                            <option value="{{ $emp->id }}">{{ $emp->name }} (ID:
-                                                {{ $emp->employee_no }})</option>
+                                            <option value="{{ $emp->id }}">{{ $emp->name }} (ID: {{ $emp->employee_no }})</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-8">
                                     <label class="col-form-label form-label">Bank Name</label>
-                                    <input name="bank_name" type="text" class="form-control">
+                                    <input name="bank_name" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-md-8">
                                     <label class="col-form-label form-label">Branch Name</label>
-                                    <input name="bank_branch" type="text" class="form-control">
+                                    <input name="bank_branch" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-md-8">
                                     <label class="col-form-label form-label">Bank Account</label>
-                                    <input name="bank_account" type="text" class="form-control">
+                                    <input name="bank_account" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-md-8">
                                     <label class="col-form-label form-label">Account Name</label>
-                                    <input name="account_name" type="text" class="form-control">
+                                    <input name="account_name" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-md-8">
                                     <label></label>
-                                    <div class=""
-                                        style="d-flex justify-content-center align-items-center text-align:center">
+                                    <div class="" style="d-flex justify-content-center align-items-center text-align:center">
                                         <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </div>
